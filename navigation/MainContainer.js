@@ -4,6 +4,7 @@ import { View,Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Header from './shared/header';
 
 //Screens
 import HomeScreen from './Screen/HomeScreen';
@@ -11,15 +12,16 @@ import DetailScreen from './Screen/DetailScreen';
 import NewsScreen from './Screen/NewsScreen';
 
 //Screen name
-const homeName = 'Home';
-const detailsName='Details';
-const newsName='News';
+const homeName = 'Trang chủ';
+const detailsName='Tài khoản';
+const newsName='Tin tức';
 
 const Tab = createBottomTabNavigator();
 
 export default function MainContainer(){
     return(
         <NavigationContainer>
+
             <Tab.Navigator
                 initialRouteName={homeName}
                 screenOptions={({route})=>({
@@ -37,9 +39,10 @@ export default function MainContainer(){
 
                         return <Ionicons name={iconName} size={size} color={color}/>
                     },
-                })}>
+                })}
+                >
 
-                <Tab.Screen name={homeName} component ={HomeScreen}/>  
+                <Tab.Screen name={homeName} component ={HomeScreen} options={{ headerTitle: () => <Header/> }}/>  
                 <Tab.Screen name={newsName} component ={NewsScreen}/> 
                 <Tab.Screen name={detailsName} component ={DetailScreen}/>   
             
